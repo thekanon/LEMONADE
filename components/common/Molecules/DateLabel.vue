@@ -1,5 +1,5 @@
 <template>
-  <TextLabel :class-name="props.className">
+  <TextLabel :class="props.className">
     {{ formatDate(props.date) }}
   </TextLabel>
 </template>
