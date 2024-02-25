@@ -1,16 +1,21 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: [
-    // Simple usage
-    "@nuxtjs/eslint-module",
+  css: ['~/assets/css/main.css'],
 
-    // With options
+  modules: [
+    '@nuxtjs/eslint-module',
     [
-      "@nuxtjs/eslint-module",
+      '@nuxtjs/eslint-module',
       {
-        /* module options */
+        fix: true,
       },
     ],
   ],
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
   devtools: { enabled: true },
 });
