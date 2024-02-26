@@ -28,3 +28,12 @@ export interface ICPostHeader {
   id: number;
   className?: string;
 }
+
+export interface IComment {
+  id: number;
+  UserId: number;
+  PostId: number;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+}

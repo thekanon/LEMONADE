@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
 
   modules: [
+    'vue3-carousel-nuxt',
     '@nuxtjs/eslint-module',
     [
       '@nuxtjs/eslint-module',

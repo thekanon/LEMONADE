@@ -51,51 +51,7 @@
     :isPopupVisible="isPopupVisible"
     @update:isPopupVisible="closePopup"
   >
-    <div class="bg-white rounded-lg shadow-lg p-6 space-y-4">
-      <div class="text-lg font-semibold text-gray-900">
-        {{ userInfo?.name }} 님의 회원정보
-      </div>
-      <div class="grid grid-cols-2 gap-4">
-        <div class="text-sm text-gray-600">NickName:</div>
-        <div class="text-sm text-gray-900">{{ userInfo?.username }}</div>
-
-        <div class="text-sm text-gray-600">Email:</div>
-        <div class="text-sm text-gray-900">{{ userInfo?.email }}</div>
-
-        <div class="text-sm text-gray-600">Phone:</div>
-        <div class="text-sm text-gray-900">{{ userInfo?.phone }}</div>
-
-        <div class="text-sm text-gray-600">Website:</div>
-        <div class="text-sm text-gray-900">{{ userInfo?.website }}</div>
-
-        <div class="text-sm text-gray-600">Province:</div>
-        <div class="text-sm text-gray-900">{{ userInfo?.province }}</div>
-
-        <div class="text-sm text-gray-600">City:</div>
-        <div class="text-sm text-gray-900">{{ userInfo?.city }}</div>
-
-        <div class="text-sm text-gray-600">District:</div>
-        <div class="text-sm text-gray-900">{{ userInfo?.district }}</div>
-
-        <div class="text-sm text-gray-600">Street:</div>
-        <div class="text-sm text-gray-900">{{ userInfo?.street }}</div>
-
-        <div class="text-sm text-gray-600">Zipcode:</div>
-        <div class="text-sm text-gray-900">{{ userInfo?.zipcode }}</div>
-
-        <div class="text-sm text-gray-600">Created At:</div>
-        <DateLabel
-          :date="userInfo?.createdAt"
-          className="text-sm text-gray-600"
-        />
-
-        <div class="text-sm text-gray-600">Updated At:</div>
-        <DateLabel
-          :date="userInfo?.updatedAt"
-          className="text-sm text-gray-600"
-        />
-      </div>
-    </div>
+    <UserInfoForm v-if="userInfo" :userInfo="userInfo" />
   </PopupLayer>
 </template>
 
@@ -106,34 +62,48 @@ import TextLabel from '@/components/common/Atoms/TextLabel.vue';
 import DateLabel from '@/components/common/Molecules/DateLabel.vue';
 import PopupLayer from '@/components/common/Molecules/PopupLayer.vue';
 import UserInfoForm from '@/components/container/UserInfoForm.vue';
-const props = defineProps({
-  post: {
-    type: Object as PropType<IPost>,
-    required: true,
-  },
-  fetchUser: {
-    type: Function as PropType<(userId: number) => IUserInfo>,
-    required: true,
-  },
-});
+
+const props = defineProps<{
+  post: IPost;
+  fetchUser: (userId: number) => IUserInfo;
+}>();
 
 const isPopupVisible = ref(false);
-const userInfo = ref<null | IUserInfo>(null);
+const router = useRouter();
+const userInfo = ref<IUserInfo | null>(null);
+
+router.beforeEach((to, _, next) => {
+  console.log('to.query.userId', to.query);
+  if (to.query.userInfoPopup === undefined) {
+    isPopupVisible.value = false;
+  }
+  next();
+});
 
 const onClickHandle = async (userId: number) => {
-  const user = await props.fetchUser(userId);
+  const router = useRouter();
 
-  if (user) {
-    console.log(JSON.stringify(user, null, 2));
-    userInfo.value = user;
+  if (userInfo.value === null) {
+    const user = await props.fetchUser(userId);
+    if (user) {
+      console.log(JSON.stringify(user, null, 2));
+      userInfo.value = user;
+    }
   }
+  router.push({
+    query: {
+      ...router.currentRoute.value.query,
+      userInfoPopup: userId.toString(),
+    },
+  });
 
   isPopupVisible.value = true;
-  console.log('onClickHandle');
 };
 const closePopup = () => {
-  console.log('closePopup, isPopupVisible: ', isPopupVisible.value);
+  const router = useRouter();
   isPopupVisible.value = false;
+  const { ...restQuery } = router.currentRoute.value.query;
+  router.push({ query: restQuery });
 };
 </script>
 

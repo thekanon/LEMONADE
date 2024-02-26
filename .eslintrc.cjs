@@ -29,7 +29,14 @@ module.exports = {
   plugins: ['@typescript-eslint', 'vue'],
   rules: {
     'vue/multi-word-component-names': 'off',
+    'vue/singleline-html-element-content-newline': 'off',
+    'vue/multiline-html-element-content-newline': 'off',
+    'vue/html-closing-bracket-newline': 'off',
+    'vue/html-indent': 'off',
+    'vue/attribute-hyphenation': 'off',
+    'func-call-spacing': 'off',
     'comma-dangle': ['error', 'always-multiline'],
+    'space-before-function-paren': 'off',
     semi: ['error', 'always'],
   },
 };

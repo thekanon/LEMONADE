@@ -10,14 +10,23 @@
       :to="`/posts/${post.id}`"
       class="post grid grid-cols-6 text-center p-4 shadow-lg rounded-lg bg-white text-grey-900 gap-4 border-b border-greyscale-300"
     >
-      <TextLabel class="truncate col-span-3 text-left">
+      <TextLabel class="col-span-1">
+        {{ post.id }}
+      </TextLabel>
+      <TextLabel class="truncate col-span-5 text-left md:col-span-2">
         {{ post.title }}
       </TextLabel>
-      <DateLabel class="col-span-1" :date="post.createdAt" />
-      <DateLabel class="col-span-1" :date="post.updatedAt" />
-      <p class="col-span-1">
+      <p class="col-span-1 hidden md:table-cell">
         {{ post.UserId }}
       </p>
+      <DateLabel
+        class="col-span-1 hidden md:table-cell"
+        :date="post.createdAt"
+      />
+      <DateLabel
+        class="col-span-1 hidden md:table-cell"
+        :date="post.updatedAt"
+      />
     </NuxtLink>
   </div>
 </template>

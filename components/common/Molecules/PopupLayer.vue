@@ -1,11 +1,11 @@
 <template>
   <div
-    v-if="isPopupVisible"
+    v-if="props.isPopupVisible"
     class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"
     @click.self="close"
   >
     <div
-      class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white"
+      class="relative top-20 mx-auto p-5 border w-fit shadow-lg rounded-md bg-white"
       @click.stop
     >
       <slot></slot>
