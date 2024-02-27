@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "nuxt dev -p 23000",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.2.0",
+    "@nuxt/vite-builder": "^3.10.3",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@nuxtjs/eslint-module": "^4.1.0",
     "@typescript-eslint/eslint-plugin": "^7.0.2",

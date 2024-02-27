@@ -30,7 +30,9 @@ if (process.client) {
 
   onMounted(() => {
     console.log('mounted');
-    console.log(JSON.stringify(comments.value));
+    // localStorage에 저장
+    const postData = JSON.parse(JSON.stringify(post.value));
+    saveRecentPost(postData);
 
     if (observerElement.value) {
       observer.observe(observerElement.value);

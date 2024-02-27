@@ -1,15 +1,17 @@
 <template>
   <div>
-    <Carousel :items-to-show="2.5">
-      <Slide v-for="slide in 10" :key="slide">
-        <PostDetail :post="post" />
-      </Slide>
+    <div v-if="postDataList.length > 0" class="carousel-container">
+      <Carousel>
+        <Slide v-for="post in postDataList" :key="post.id">
+          <PostDetail :post="post" />
+        </Slide>
 
-      <template #addons>
-        <Navigation />
-        <Pagination />
-      </template>
-    </Carousel>
+        <template #addons>
+          <Navigation />
+          <Pagination />
+        </template>
+      </Carousel>
+    </div>
 
     <PostList :posts="posts" :increment="20" :header="header" />
   </div>
@@ -19,6 +21,8 @@
 import type { IPost } from '@/types';
 import PostList from '@/components/common/Organisms/PostList.vue';
 import PostDetail from '@/components/common/Organisms/PostDetail.vue';
+
+const postDataList = ref<IPost[]>([]);
 
 const { data: posts } = await useFetch<IPost[]>(
   'https://koreanjson.com/posts',
@@ -35,34 +39,22 @@ const header = [
   { text: '수정일', className: 'hidden md:table-cell', id: 5 },
 ];
 
-const post: IPost = {
-  id: 1,
-  title: '제목',
-  content: '내용',
-  createdAt: '2021-10-10T00:00:00.000Z',
-  updatedAt: '2021-10-10T00:00:00.000Z',
-  UserId: 1,
-};
+if (process.client) {
+  postDataList.value = loadRecentPosts();
+}
 </script>
 
 <style>
+.carousel-container {
+}
 .carousel__item {
-  min-height: 200px;
-  width: 100%;
-  font-size: 20px;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .carousel__slide {
-  padding: 10px;
+  height: 100%;
 }
 
 .carousel__prev,
 .carousel__next {
-  box-sizing: content-box;
-  border: 5px solid white;
 }
 </style>

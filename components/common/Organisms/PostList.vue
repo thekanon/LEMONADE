@@ -28,6 +28,13 @@
         :date="post.updatedAt"
       />
     </NuxtLink>
+    <Button
+      v-if="currentIndex < props.posts.length"
+      class="w-full p-4 bg-primary-500 text-white"
+      @click="checkScroll"
+    >
+      Load More
+    </Button>
   </div>
 </template>
 
@@ -69,7 +76,6 @@ onMounted(() => {
 
 <style scoped>
 .post-list {
-  max-height: 80vh;
 }
 
 .grid-cols-4 {

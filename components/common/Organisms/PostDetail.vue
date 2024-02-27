@@ -3,7 +3,7 @@
     <div
       class="px-4 py-5 sm:px-6 flex flex-col sm:flex-row justify-between items-start sm:items-center"
     >
-      <div>
+      <div class="text-left">
         <div>
           <TextLabel class="text-sm font-semibold text-gray-600"
             >제목</TextLabel
@@ -36,7 +36,7 @@
     </div>
     <div class="border-t border-gray-200">
       <dl>
-        <div class="bg-gray-50 px-4 py-5 sm:gap-4 sm:px-6">
+        <div class="bg-gray-50 px-4 py-5 sm:gap-4 sm:px-6 text-left">
           <TextLabel class="text-sm font-semibold text-gray-600"
             >내용</TextLabel
           >
@@ -65,7 +65,7 @@ import UserInfoForm from '@/components/container/UserInfoForm.vue';
 
 const props = defineProps<{
   post: IPost;
-  fetchUser: (userId: number) => IUserInfo;
+  fetchUser?: (userId: number) => IUserInfo;
 }>();
 
 const isPopupVisible = ref(false);
@@ -83,7 +83,7 @@ router.beforeEach((to, _, next) => {
 const onClickHandle = async (userId: number) => {
   const router = useRouter();
 
-  if (userInfo.value === null) {
+  if (userInfo.value === null && props.fetchUser) {
     const user = await props.fetchUser(userId);
     if (user) {
       console.log(JSON.stringify(user, null, 2));
