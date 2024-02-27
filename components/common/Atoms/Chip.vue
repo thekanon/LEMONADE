@@ -20,7 +20,7 @@ const props = defineProps({
   },
   color: {
     type: String,
-    default: '',
+    default: 'blue',
   },
   link: {
     type: String,
