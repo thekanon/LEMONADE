@@ -25,6 +25,12 @@ node .output/server/index.mjs
 
 http://localhost:3000
 
+### 추가 도구(storybook)
+
+pnpm run storybook
+
+주소 : http://localhost:6006
+
 # 2. 프로젝트 기능 설명
 
 ## 2.1 글 목록 페이지
