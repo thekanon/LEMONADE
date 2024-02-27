@@ -21,4 +21,7 @@ const props = defineProps<{
 .title-container {
   margin: 1rem;
 }
+.comment-list {
+  -webkit-overflow-scrolling: touch;
+}
 </style>
