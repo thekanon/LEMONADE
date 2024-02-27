@@ -7,7 +7,7 @@ export function saveRecentPost(post: IPost) {
   );
   const updatedRecentPosts = [
     post,
-    ...recentPosts.filter((p) => p.id !== post.id),
+    ...recentPosts.filter(p => p.id !== post.id),
   ].slice(0, maxRecentPosts);
   localStorage.setItem('recentPosts', JSON.stringify(updatedRecentPosts));
 }

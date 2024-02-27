@@ -1,3 +1,56 @@
+# 1. 설치 및 실행 방법
+
+## 1.1 기본 설치 필요 사항
+
+node v20.11.0
+pnpm v8.15.1
+
+## 1.2 프로젝트 설치
+
+### 프로젝트 클론 및 이동
+
+git clone https://github.com/thekanon/LEMONADE.git
+cd LEMONADE
+
+### 설치 및 빌드
+
+pnpm install
+pnpm build
+
+### 실행
+
+node .output/server/index.mjs
+
+### 접속(web)
+
+http://localhost:3000
+
+# 2. 프로젝트 기능 설명
+
+## 2.1 글 목록 페이지
+
+- 주소 : http://localhost:3000/viewPosts
+- 기능
+
+  - 글 목록을 보여준다.
+  - 최근 본 글을 Local Storage에 저장하여 보여준다.
+  - 가로 슬라이드(Carousel) 컴포넌트를 통해 최근 본 글을 보여준다.
+
+- 추가 기능
+  - Lead More 버튼을 클릭하여 더 많은 글을 불러올 수 있다.
+  - 모바일에서는 글 목록의 일부 컬럼이 생략된 상태로 보여진다.
+
+## 2.2 글 상세 페이지
+
+- 주소 : http://localhost:3000/posts/45
+- 기능
+  - 글 상세 정보를 보여준다.
+  - 댓글 섹션을 보여주고 무한 스크롤을 통해 댓글을 불러온다.
+  - userId 클릭 시 유저 정보를 보여주는 레이어 팝업을 보여준다.
+  - 뒤로가기 버튼을 누르면 레이어 팝업이 닫힌다.
+
+# 3. 프로젝트 Todo
+
 ### **1. 프로젝트 초기 설정**
 
 - [x] Nuxt.js 프로젝트 생성하기
