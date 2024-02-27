@@ -93,7 +93,7 @@ pnpm run storybook
 ## **4. 기능 구현**
 
 - [x] 레이어 팝업 뒤로가기 키로 닫을 수 있도록 이벤트 핸들러 구현
-- [ ] iOS 및 Android 디바이스 별 추가 기능 구현
+- [x] iOS 및 Android 디바이스 별 추가 기능 구현
   - iOS 예: 특정 제스처 인식
   - Android 예: 물리적 백 버튼 커스텀 액션
 
